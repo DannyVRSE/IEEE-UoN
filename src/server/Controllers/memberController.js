@@ -35,7 +35,7 @@ const signUp = async (req, res) => {
                     subject: "IEEE UoN Verification",
                     text: `Hello ${name} Please verify your email by
                 clicking this link :
-                http://localhost:${process.env.PORT}/api/users/verify-email/${member.member_id}/${setToken.token}`
+                http://localhost:${process.env.PORT}/api/members/verify-email/${member.member_id}/${setToken.token}`
                 });
             } else {
                 res.status(400).send("Token not created");
@@ -73,7 +73,7 @@ const verifyEmail = async (req, res) => {
 
             //if token exist, find the user with that token
         } else {
-            const member = await Member.findOne({ where: { id: req.params.id } });
+            const member = await Member.findOne({ where: { member_id: req.params.id } });
             if (!member) {
                 console.log(member);
                 return res.status(401).send({
@@ -81,7 +81,7 @@ const verifyEmail = async (req, res) => {
                 });
 
                 //if user is already verified, tell the user to login
-            } else if (member.isVerified) {
+            } else if (member.verified) {
                 return res
                     .status(200)
                     .send("User has been already verified. Please Login");
@@ -89,7 +89,7 @@ const verifyEmail = async (req, res) => {
                 //if user is not verified, change the verified to true by updating the field
             } else {
                 const updated = await member.update(
-                    { isVerified: true },
+                    { verified: true },
                     {
                         where: {
                             member_id: memberToken.member_id,
