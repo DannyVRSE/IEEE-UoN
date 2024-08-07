@@ -11,6 +11,10 @@ const memberModel = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
+        year:{
+            type:DataTypes.STRING,
+            allowNull: false
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false

@@ -10,17 +10,23 @@ const saltrounds = 10;
 
 //sign up
 const signUp = async (req, res) => {
+
     try {
-        const { name, email, reg_no, ieee_no, phone, password } = req.body;
+        const { name, email, reg_no, year, ieee_no, phone, password } = req.body.registrationForm;
         const data = {
             name,
             email,
             reg_no,
+            year,
             ieee_no,
             phone,
             password: await bcrypt.hash(password, saltrounds),
         };
+        console.log(data, "data");
         const member = await Member.create(data);
+
+
+
         if (member) {
             let setToken = await Token.create({
                 member_id: member.member_id,
@@ -28,15 +34,28 @@ const signUp = async (req, res) => {
             });
 
             if (setToken) {
+
+                const host = req.headers.host;//get host from request headers
+                const protocol = req.protocol//http or https
+                const verificationLink = `${protocol}://${host}/api/members/verify-email/${member.member_id}/${setToken.token}`
+                console.log(verificationLink);
+
                 //send mail to user
                 sendingMail({
                     from: process.env.EMAIL,
                     to: `${email}`,
                     subject: "IEEE UoN Verification",
-                    text: `
-                    Hello ${name} Please verify your email by
-                clicking this link :
-                http://localhost:${process.env.PORT}/api/members/verify-email/${member.member_id}/${setToken.token}`
+                    html: `
+            <html>
+            <body>
+                <p>Hello ${name},</p>
+                <p>Please verify your email by clicking this link:</p>
+                <a href="${verificationLink}">${verificationLink}</a>
+                <p>Thank you!</p>
+                <p>IEEE UoN Team</p>
+            </body>
+            </html>
+        `
                 });
             } else {
                 res.status(400).send("Token not created");

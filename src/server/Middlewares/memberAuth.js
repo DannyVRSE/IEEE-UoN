@@ -7,7 +7,7 @@ const saveMember = async (req, res, next) => {
     try {
         //query email
         const email = await Member.findOne({
-            where: { email: req.body.email },
+            where: { email: req.body.registrationForm.email },
         });
         //email already exists in database
         if (email) {

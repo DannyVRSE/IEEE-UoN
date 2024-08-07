@@ -1,7 +1,6 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import env from "dotenv";
-import helmet from "helmet";
 import memberRoutes from "./Routes/memberRoutes.js";
 import db from "./Models/index.js";
 import process from "node:process";
@@ -12,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));//similar to body-parser
-app.use(helmet());
+//app.use(helmet());
 
 //sync database
 db.sequelize.sync({ force: false }).then(() => {
@@ -20,6 +19,7 @@ db.sequelize.sync({ force: false }).then(() => {
 }).catch((err) => {
     console.log(err);
 })
+
  //routes
  app.use("/api/members", memberRoutes);
 

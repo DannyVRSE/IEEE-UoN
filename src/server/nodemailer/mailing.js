@@ -2,13 +2,13 @@ import nodemailer from "nodemailer";
 import process from "node:process";
 
 //send email
-const sendingMail = async ({ from, to, subject, text }) => {
+const sendingMail = async ({ from, to, subject, html }) => {
     try {
         let mailOptions = ({
             from,
             to,
             subject,
-            text
+            html
         })
 
         const Transporter = nodemailer.createTransport({
