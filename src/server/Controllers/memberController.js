@@ -33,7 +33,8 @@ const signUp = async (req, res) => {
                     from: process.env.EMAIL,
                     to: `${email}`,
                     subject: "IEEE UoN Verification",
-                    text: `Hello ${name} Please verify your email by
+                    text: `
+                    Hello ${name} Please verify your email by
                 clicking this link :
                 http://localhost:${process.env.PORT}/api/members/verify-email/${member.member_id}/${setToken.token}`
                 });

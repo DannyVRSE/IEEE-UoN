@@ -10,7 +10,8 @@ const societyModel = (sequelize, DataTypes) => {
             allowNull:false,
             unique:true
         },
-    })
+    },
+{timestamps: false})
     return Society;
 } 
 

@@ -12,7 +12,7 @@ const tokenModel = (sequelize, DataTypes) => {
             allowNull: false,
             onUpdate: "cascade",
             onDelete: "cascade",
-            references: { model: "Member", key: "member_id" }
+            references: { model: "Members", key: "member_id" }
         },
         token: {
             type: DataTypes.STRING,

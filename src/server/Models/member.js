@@ -32,10 +32,15 @@ const memberModel = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        access_tier: {
-            type: DataTypes.INTEGER,
+        role: {
+            type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: 3
+            defaultValue: "member"
+        },
+        privilege_level: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "basic"
         },
         verified: {
             type: DataTypes.BOOLEAN,
