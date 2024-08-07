@@ -1,5 +1,5 @@
 const societyModel = (sequelize, DataTypes) => {
-    sequelize.define("Society", {
+    const Society=sequelize.define("Society", {
         society_id:{
             type:DataTypes.INTEGER,
             autoIncrement:true,
@@ -11,7 +11,7 @@ const societyModel = (sequelize, DataTypes) => {
             unique:true
         },
     })
-    return societyModel;
+    return Society;
 } 
 
 export default societyModel;

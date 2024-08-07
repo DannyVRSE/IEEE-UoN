@@ -1,9 +1,10 @@
 import { Sequelize, DataTypes } from "sequelize";
 import env from "dotenv";
-import memberModel from "./members.js";
+import memberModel from "./member.js";
 import tokenModel from "./token.js";
 import societyModel from "./society.js";
 import junctionModel from "./junction.js";
+import process from "node:process"
 
 env.config();
 
@@ -22,21 +23,22 @@ db.Sequelize=Sequelize;
 db.sequelize=sequelize;
 
 //connect models to db
-db.Member=memberModel(sequelize, DataTypes);
-db.Token=tokenModel(sequelize, DataTypes);
-db.Society=societyModel(sequelize, DataTypes);
-db.MembersSocieties=junctionModel(sequelize, DataTypes);
+db.Member= await memberModel(sequelize, DataTypes);
+db.Token=await tokenModel(sequelize, DataTypes);
+db.Society=await societyModel(sequelize, DataTypes);
+db.MembersSocieties=await junctionModel(sequelize, DataTypes);
 
 //associations
 db.Member.belongsToMany(db.Society, { through: db.MembersSocieties });
 db.Society.belongsToMany(db.Member, { through: db.MembersSocieties });
 
 db.Member.hasOne(db.Token,{
-    as:"token",
+    as:"Token",
     foreignKey:"member_id"
 });
 
 db.Token.belongsTo(db.Member,{
+    as:"Member",
     foreignKey:"member_id"
 });
 

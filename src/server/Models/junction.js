@@ -3,13 +3,13 @@ const junctionModel=(sequelize, DataTypes)=>{
         memberId:{
             type:DataTypes.INTEGER,
             references:{
-                model: "members",
+                model: "Members",
                 key: "member_id"
             },
             societyId:{
                 type:DataTypes.INTEGER,
                 references:{
-                    model: "societies",
+                    model: "Societies",
                     key: "society_id"
                 }   
             }

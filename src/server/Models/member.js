@@ -8,7 +8,8 @@ const memberModel = (sequelize, DataTypes) => {
         },
         reg_no: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         name: {
             type: DataTypes.STRING,
@@ -16,10 +17,12 @@ const memberModel = (sequelize, DataTypes) => {
         },
         email: {
             type: DataTypes.STRING,
+            unique: true,
             allowNull: false
         },
         ieee_no: {
             type: DataTypes.INTEGER,
+            unique: true,
             allowNull: true
         },
         phone: {
