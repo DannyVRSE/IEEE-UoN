@@ -1,7 +1,8 @@
 import db from "../Models/index.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import sendingMail from "../nodemailer/mailing.js";
+import sendingMail from "../Config/nodemailer.js";
+import jwt from "jsonwebtoken";
 import process from "node:process";
 
 const Member = db.Member;
@@ -135,5 +136,41 @@ const verifyEmail = async (req, res) => {
 };
 
 //login authentication
+const login = async (req, res) => {
+    try {
+        //get email and password from request body
+        const { email, password } = req.body.loginForm;
+        console.log(email, password, "email and password");
+        //find member
+        const member = await Member.findOne({where:{ email:email }});
+        if (member) {
+            //compare password
+            const isSame = bcrypt.compare(password, member.password);
+            if (isSame) {
+                console.log("password is correct");
+                //check if user is verified
+                const verified = member.verified;
+                if (verified) {
+                    //create token
+                    const token = jwt.sign({ id: member.member_id }, process.env.JWT_SECRET, {
+                        expiresIn: 1 * 24 * 60 * 60 * 1000,
+                    });
+                    //console.log(token, "token");
+                    //send token
+                    return res.json({ token });
+                } else {
+                    return res.status(401).send({ message: "User not verified" });
+                }
+            } else {
+                return res.status(401).send({ message: "Incorrect password" });
+            }
+        } else {
+            return res.status(404).send({ message: "User not found" });
+        }
+    } catch (error) {
+        console.log(error)
+    }
 
-export default { signUp, verifyEmail };
+}
+
+export default { signUp, verifyEmail, login };

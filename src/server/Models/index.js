@@ -29,6 +29,7 @@ db.Society=await societyModel(sequelize, DataTypes);
 db.Membership=await membershipModel(sequelize, DataTypes);
 
 //associations
+//set up many to many association
 db.Member.belongsToMany(db.Society, { through: db.Membership });
 db.Society.belongsToMany(db.Member, { through: db.Membership });
 

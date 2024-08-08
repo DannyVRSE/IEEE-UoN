@@ -4,6 +4,8 @@ import env from "dotenv";
 import memberRoutes from "./Routes/memberRoutes.js";
 import db from "./Models/index.js";
 import process from "node:process";
+import passport from "passport";
+import passportAuth from "./Config/passport.js";
 env.config();
 
 const PORT = process.env.PORT || 5000;
@@ -11,6 +13,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));//similar to body-parser
+app.use(passport.initialize());
+passportAuth(passport);
 //app.use(helmet());
 
 //sync database
