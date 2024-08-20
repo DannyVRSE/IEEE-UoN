@@ -183,12 +183,16 @@ const login = async (req, res) => {
 const getAuthStatus = async (req, res) => {
     if (req.user) {
         //get societies the member has joined
-        const registeredSocieties = await sequelize.query(`SELECT "Societies".society_name FROM "Societies" JOIN "Memberships" ON "Societies".society_id="Memberships".society_id WHERE "Memberships".member_id=${req.user.member_id}`, {
+        const registeredSocieties = await sequelize.query(`
+            SELECT "Societies".society_name, "Memberships".role, "Memberships".privilege_level
+FROM "Societies"
+JOIN "Memberships" ON "Societies".society_id = "Memberships".society_id
+WHERE "Memberships".member_id =${req.user.member_id}
+`, {
             type: QueryTypes.SELECT,
         });
-        //console.log(registeredSocieties, "registered societies")
         //send json
-        res.status(200).json({ user: { name: req.user.name, email: req.user.email, accessTier: req.user.privilege_level, societies: registeredSocieties } });
+        res.status(200).json({ user: { name: req.user.name, email: req.user.email, privilege_level: req.user.privilege_level, societies: registeredSocieties } });
     } else {
         res.status(401).json({ auth: "false" });
     }
@@ -197,6 +201,7 @@ const getAuthStatus = async (req, res) => {
 const joinSociety = async (req, res) => {
     try {
         const { email, society } = req.body;
+        //console.log(email, society)
         //get member
         const member = await Member.findOne({ where: { email } });
         //get society

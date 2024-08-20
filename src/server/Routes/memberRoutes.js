@@ -5,11 +5,11 @@ import authenticate from '../Middlewares/passport.js';
 
 const router = express.Router();
 const { signUp, verifyEmail, login, getAuthStatus, joinSociety } = memberController
-//sign up endpoint
+//sign up
 router.post("/signup", saveMember, signUp);
-//email verification endpoint
+//email verification
 router.get("/verify-email/:id/:token", verifyEmail);
-//join society endpoint
+//join society
 router.post("/memberships", authenticate, joinSociety);
 //auth status
 //modify and test 🚩

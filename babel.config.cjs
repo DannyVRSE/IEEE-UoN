@@ -1,4 +1,4 @@
-export default {
+module.exports= {
     presets: [
       [
         '@babel/preset-env',
@@ -7,6 +7,12 @@ export default {
             node: 'current',
           },
         },
+      ],
+    ],
+    plugins: [
+      [
+        '@babel/plugin-syntax-import-attributes',
+        { deprecatedAssertSyntax: true },
       ],
     ],
   };

@@ -25,17 +25,17 @@ db.sequelize.sync({ force: false }).then(() => {
     console.log(err);
 })
 
- //routes
- app.use("/api/members", memberRoutes);
- app.use("/api/admin", adminRoutes);
+//routes
+app.use("/api/members", memberRoutes);
+app.use("/api/admin", adminRoutes);
 
 ViteExpress.listen(app, PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
 
 //test
-if (process.env.NODE_ENV === "test"){
+/*if (process.env.NODE_ENV === "test") {
     app.listen(3000, () => console.log(`⚡️[server]: Server is running at https://localhost:3000`))
-}
+}*/
 
 export default app;

@@ -1,6 +1,6 @@
 import database from "../Models/index.js";
 const { db } = database;//import db instance
-const Member = await db.Member;
+const Member = db.Member;
 
 //check if email is already in db
 const saveMember = async (req, res, next) => {

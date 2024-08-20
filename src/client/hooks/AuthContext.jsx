@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const getUser = () => {
     setLoading(true)
+    //console.log(token, "token")
     axios.get("/api/members/auth-status", {
       headers: {
         Authorization: `Bearer ${token}`

@@ -9,7 +9,7 @@ const Members = () => {
     let name = societyName.toUpperCase();
     const [members, setMembers] = useState([]);
 
-    //fetch members
+
     const fetchMembers = () => {
         axios.get(`/api/admin/${societyName}/members`,
             {
@@ -18,30 +18,14 @@ const Members = () => {
                 }
             })
             .then((response) => {
-                handleMembers(response.data)
+                setMembers(response.data)
+                console.log(members, "members")
             })
             .catch((error) => {
                 alert(error)
             })
-    }
+        }
 
-    const handleMembers = (members) => {
-        let memberArray = [];
-        members.forEach(member => {
-            const user = {
-                id: member.member_id,
-                name: member.name,
-                email: member.email,
-                year: member.year,
-                phone: member.phone,
-                role: member.role,
-                privilege: member.privilege_level
-            };
-
-            memberArray.push(user);
-            setMembers(memberArray);
-        });
-    }
     //fetch on render
     useEffect(() => {
         fetchMembers()
@@ -74,13 +58,13 @@ const Members = () => {
                             </thead>
                             <tbody>
                                 {members.map((member) => (
-                                    <tr key={member.id}>
+                                    <tr key={member.email}>
                                         <td>{member.name}</td>
                                         <td>{member.email}</td>
                                         <td>{member.year}</td>
                                         <td>{member.phone}</td>
                                         <td>{member.role}</td>
-                                        <td>{member.privilege}</td>
+                                        <td>{member.privilege_level}</td>
                                     </tr>
                                 ))}
                             </tbody>

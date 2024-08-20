@@ -13,10 +13,10 @@ const Home = () => {
   const [style, setStyle] = useState({})
 
   //get use on login
-
   useEffect(() => {
     getUser();
     if (user) {
+      //console.log(user)
       //change text to logged in
       setText("Logged in")
       //modify button to disabled
@@ -24,13 +24,15 @@ const Home = () => {
       //remove pointer
       setStyle({ pointerEvents: "none" })
     }
-  }, [])
+  }, [loading])
 
   return (
     <>
+    {/*background video */}
       <video autoPlay loop muted id="tech-background-video">
         <source src={backgroundVideo} type="video/mp4" />
       </video>
+      
       <div className="container">
         <div className="inner-div-1">
           {user && <div>{loading && <div className="loader"></div>}<p>{user.name}</p></div>}

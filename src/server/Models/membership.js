@@ -6,22 +6,16 @@ const membershipModel = (sequelize, DataTypes) => {
             references: {
                 model: "Members",
                 key: "member_id"
-            }
+            },
+            primaryKey:true
         },
         society_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: "Societies",
                 key: "society_id"
-            }
-        },
-
-        society_name:{
-            type: DataTypes.STRING,
-            references:{
-                model:"Societies",
-                key: "society_name"
-            }
+            },
+            primaryKey:true
         },
 
         role: {

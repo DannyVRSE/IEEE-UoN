@@ -12,7 +12,9 @@ const Community = () => {
     return (
         <>
             <div className="container">
+            <BackBtn/>               
                 <div>
+                
                     <Carousel>
                         <Carousel.Item>
                             <img
