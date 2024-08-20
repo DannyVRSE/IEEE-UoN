@@ -4,19 +4,16 @@ import saveMember from '../Middlewares/memberAuth.js';
 import authenticate from '../Middlewares/passport.js';
 
 const router = express.Router();
-const { signUp, verifyEmail, login } = memberController
+const { signUp, verifyEmail, login, getAuthStatus, joinSociety } = memberController
 //sign up endpoint
 router.post("/signup", saveMember, signUp);
 //email verification endpoint
 router.get("/verify-email/:id/:token", verifyEmail);
+//join society endpoint
+router.post("/memberships", authenticate, joinSociety);
 //auth status
-router.get("/auth-status", authenticate, (req, res) => {
-    if (req.user) {
-        res.status(200).json({user: {name: req.user.name, email:req.user.email, accessTier: req.user.privilege_level}});
-    } else {
-        res.status(401).json({ auth: "false" });
-    }
-});
+//modify and test 🚩
+router.get("/auth-status", authenticate, getAuthStatus );
 
 router.post("/login", login);
 

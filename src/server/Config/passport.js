@@ -1,6 +1,8 @@
 import JWT from 'passport-jwt';
-import db from '../Models/index.js';
+import database from '../Models/index.js';
 import process from "node:process";
+
+const { db } = database;
 
 const JWTStrategy = JWT.Strategy;
 const ExtractJWT = JWT.ExtractJwt;
@@ -9,27 +11,27 @@ const Member = db.Member;
 
 //options
 
-const opts= {
+const opts = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),//extract jwt from authorization header
     secretOrKey: process.env.JWT_SECRET//secret key
 }
 
 //strategy
-const passportAuth = (passport)=>{
+const passportAuth = (passport) => {
     console.log("passport auth...");
-    try{
+    try {
         passport.use(
-            new JWTStrategy(opts, async (jwt_payload, done)=>{
+            new JWTStrategy(opts, async (jwt_payload, done) => {
                 //find user by id
-                const user = await Member.findOne({where:{member_id:jwt_payload.id}});
-                if(!user){
+                const user = await Member.findOne({ where: { member_id: jwt_payload.id } });
+                if (!user) {
                     done(null, false);
-                }else{
+                } else {
                     done(null, user);
                 }
             })
         )
-    }catch(err){
+    } catch (err) {
         console.log(err);
         throw err;
     }

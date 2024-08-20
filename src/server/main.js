@@ -2,6 +2,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import env from "dotenv";
 import memberRoutes from "./Routes/memberRoutes.js";
+import adminRoutes from "./Routes/adminRoutes.js";
 import db from "./Models/index.js";
 import process from "node:process";
 import passport from "passport";
@@ -26,7 +27,15 @@ db.sequelize.sync({ force: false }).then(() => {
 
  //routes
  app.use("/api/members", memberRoutes);
+ app.use("/api/admin", adminRoutes);
 
 ViteExpress.listen(app, PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
+
+//test
+if (process.env.NODE_ENV === "test"){
+    app.listen(3000, () => console.log(`⚡️[server]: Server is running at https://localhost:3000`))
+}
+
+export default app;

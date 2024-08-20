@@ -1,11 +1,18 @@
-import db from "../Models/index.js";
+import database from "../Models/index.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import sendingMail from "../Config/nodemailer.js";
 import jwt from "jsonwebtoken";
 import process from "node:process";
+import { QueryTypes } from "sequelize";
+
+//get models from database
+//'sequelize' for use with raw queries, db for ORM
+
+const { db, sequelize } = database;
 
 const Member = db.Member;
+const Membership = db.Membership;
 const Token = db.Token;
 const saltrounds = 10;
 
@@ -142,7 +149,7 @@ const login = async (req, res) => {
         const { email, password } = req.body.loginForm;
         console.log(email, password, "email and password");
         //find member
-        const member = await Member.findOne({where:{ email:email }});
+        const member = await Member.findOne({ where: { email: email } });
         if (member) {
             //compare password
             const isSame = bcrypt.compare(password, member.password);
@@ -173,4 +180,36 @@ const login = async (req, res) => {
 
 }
 
-export default { signUp, verifyEmail, login };
+const getAuthStatus = async (req, res) => {
+    if (req.user) {
+        //get societies the member has joined
+        const registeredSocieties = await sequelize.query(`SELECT "Societies".society_name FROM "Societies" JOIN "Memberships" ON "Societies".society_id="Memberships".society_id WHERE "Memberships".member_id=${req.user.member_id}`, {
+            type: QueryTypes.SELECT,
+        });
+        //console.log(registeredSocieties, "registered societies")
+        //send json
+        res.status(200).json({ user: { name: req.user.name, email: req.user.email, accessTier: req.user.privilege_level, societies: registeredSocieties } });
+    } else {
+        res.status(401).json({ auth: "false" });
+    }
+}
+
+const joinSociety = async (req, res) => {
+    try {
+        const { email, society } = req.body;
+        //get member
+        const member = await Member.findOne({ where: { email } });
+        //get society
+        const societyData = await db.Society.findOne({ where: { society_name: society } });
+        //create membership
+        const membership = await Membership.create({ member_id: member.member_id, society_id: societyData.society_id });
+        if (membership) {
+            return res.status(201).send("Membership created")
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Error creating membership")
+    }
+}
+
+export default { signUp, verifyEmail, login, getAuthStatus, joinSociety };

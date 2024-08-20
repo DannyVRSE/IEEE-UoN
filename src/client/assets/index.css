@@ -1,9 +1,24 @@
-.inner-div-1{
-    margin-top:45%;
+#tech-background-video {
+    z-index: -1;
+    position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.inner-div-2{
-    margin-top:20%;
+.inner-div-1 {
+    margin-top: 45%;
+}
+
+.inner-div-2 {
+    margin-top: 20%;
+}
+
+.carousel-img{
+    height:100vh;
+    object-fit: cover;
 }
 
 .alert-card-overlay {
@@ -32,20 +47,48 @@
     max-width: 100%;
 }
 
-/* HTML: <div class="loader"></div> */
+.home-btn{
+margin-right: 20px;
+}
+
+.back-btn{
+    margin:5px;
+}
+
+/*loader*/
 .loader {
     width: 50px;
     padding: 8px;
     aspect-ratio: 1;
     border-radius: 50%;
     background: #6f42c1;
-    --_m: 
-      conic-gradient(#0000 10%,#000),
-      linear-gradient(#000 0 0) content-box;
+    --_m:
+        conic-gradient(#0000 10%, #000),
+        linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
-            mask: var(--_m);
+    mask: var(--_m);
     -webkit-mask-composite: source-out;
-            mask-composite: subtract;
+    mask-composite: subtract;
     animation: l3 1s infinite linear;
-  }
-  @keyframes l3 {to{transform: rotate(1turn)}}
+}
+
+@keyframes l3 {
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+/*font awesome*/
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+.fa-x-twitter {
+    background: #55ACEE;
+    color: white;
+}

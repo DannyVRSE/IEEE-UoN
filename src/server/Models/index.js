@@ -43,4 +43,4 @@ db.Token.belongsTo(db.Member,{
     foreignKey:"member_id"
 });
 
-export default db;
+export default {db, sequelize};

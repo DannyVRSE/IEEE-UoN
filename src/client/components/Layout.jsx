@@ -12,9 +12,9 @@ const Layout = () => {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto">
                                 <li className="nav-item"><Link to="/" className="nav-link active">Home</Link></li>
-                                <li className="nav-item"><Link to="/schedule" className="nav-link">Schedule</Link></li>
-                                <li className="nav-item"><Link to="/proposals" className="nav-link">Proposals</Link></li>
-                                <li className="nav-item"><Link to="/account" className="nav-link">Account</Link></li>
+                                <li className="nav-item"><Link to="/community" className="nav-link">Community</Link></li>
+                                <li className="nav-item"><Link to="/account" className="nav-link">IEEE&Me</Link></li>
+                                <li className="nav-item"><Link to="/about" className="nav-link">About</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -23,5 +23,4 @@ const Layout = () => {
             <Outlet /></>
   )
 }
-
 export default Layout

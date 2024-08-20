@@ -1,26 +1,35 @@
+//junction table for a many to many relationship
 const membershipModel = (sequelize, DataTypes) => {
     const Membership = sequelize.define("Membership", {
-        memberId: {
+        member_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: "Members",
                 key: "member_id"
-            },
-            societyId: {
-                type: DataTypes.INTEGER,
-                references: {
-                    model: "Societies",
-                    key: "society_id"
-                }
-            },
-
+            }
         },
+        society_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "Societies",
+                key: "society_id"
+            }
+        },
+
+        society_name:{
+            type: DataTypes.STRING,
+            references:{
+                model:"Societies",
+                key: "society_name"
+            }
+        },
+
         role: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "member"
         },
-        privilege_level:{
+        privilege_level: {
             type: DataTypes.STRING,
             defaultValue: "basic"
         }

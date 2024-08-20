@@ -1,4 +1,4 @@
-
+//token for email verification
 const tokenModel = (sequelize, DataTypes) => {
     const Token = sequelize.define("Token", {
         id: {

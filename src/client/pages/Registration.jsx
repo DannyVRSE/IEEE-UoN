@@ -3,6 +3,7 @@ import axios from "axios";
 import PasswordStrengthBar from "react-password-strength-bar";
 import zxcvbn from "zxcvbn"; //password strength suggestions
 import Alert from "../components/Alert";
+import BackBtn from "../components/BackBtn";
 
 const Registration = () => {
 
@@ -110,6 +111,7 @@ const Registration = () => {
                     </div>
                 }
                 <div className="inner-div-2">
+                    <BackBtn/>
                     <div className="card w-80 register-card">
                         <div className="card-body">
                             <form onSubmit={handleSubmit}>

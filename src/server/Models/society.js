@@ -5,7 +5,7 @@ const societyModel = (sequelize, DataTypes) => {
             autoIncrement:true,
             primaryKey:true
         },
-        name:{
+        society_name:{
             type:DataTypes.STRING,
             allowNull:false,
             unique:true

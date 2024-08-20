@@ -1,7 +1,6 @@
 import axios from "axios";
-import { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types'; // Add this line to import PropTypes
-import { useContext } from 'react';
 const token = localStorage.getItem("ieeeuon_token");
 
 const AuthContext = createContext();
@@ -33,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   }
   return (
     <>
-      <AuthContext.Provider value={{ user, getUser, loading}}>
+      <AuthContext.Provider value={{ user, getUser, loading, token}}>
         {children}
       </AuthContext.Provider>
     </>
