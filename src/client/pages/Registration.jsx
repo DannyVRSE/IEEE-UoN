@@ -99,7 +99,7 @@ const Registration = () => {
 
     return (
         <>
-        <div className="background-img">
+        
             <div className="container">
                 {showAlert &&
                     <div className="alert-card-overlay">
@@ -173,7 +173,7 @@ const Registration = () => {
                     </div>
                 </div>
             </div>
-            </div>
+           
         </>
     )
 }

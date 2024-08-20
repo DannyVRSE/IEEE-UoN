@@ -14,7 +14,6 @@ const Community = () => {
             <div className="container">
             <BackBtn/>               
                 <div>
-                
                     <Carousel>
                         <Carousel.Item>
                             <img

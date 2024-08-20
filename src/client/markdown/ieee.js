@@ -31,6 +31,7 @@ IEEE publishes nearly a third of the world’s technical literature in electrica
 ## Education and Standards
 IEEE offers a variety of educational opportunities such as courses, certificates, and conferences. It also plays a significant role in the development of international standards, which ensures the quality and interoperability of products and services. [Discover IEEE educational resources](https://www.ieee.org/education/index.html).
 
+
 ## Conclusion
 As a globally recognized organization, IEEE continues to lead the way in technological innovation and professional development, making significant contributions to the advancement of technology and the betterment of society.
 
