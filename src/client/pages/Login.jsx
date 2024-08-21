@@ -29,7 +29,8 @@ const Login = () => {
                 window.location.href = "/";//redirect to home page
             })
             .catch((error) => {
-                alert(`${error} Login failed! Please try again`)
+                alert(`Login failed! Have you verified your email?`)
+                console.log(error)
             })
             .finally(() => {
                 setLoginForm({
