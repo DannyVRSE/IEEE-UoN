@@ -8,6 +8,7 @@ import BackBtn from "../components/BackBtn";
 const Registration = () => {
 
     const [showAlert, setShowAlert] = useState(false);
+    const [loading, setLoading]=useState(false);
 
     const [alert, setAlert] = useState({
         title: "",
@@ -60,6 +61,8 @@ const Registration = () => {
     //form submission
     const handleSubmit = (e) => {
         e.preventDefault();
+        //send data to the server
+        setLoading(true);
         axios.post("/api/members/signup", { registrationForm }, {
             headers: {
                 "Content-Type": "application/json"
@@ -73,14 +76,18 @@ const Registration = () => {
                         title: "Success!",
                         content: "Check your inbox for a verification email"
                     })
+                    setLoading(false);
                 }
             })
             .catch((error) => {
                 setShowAlert(true);
                 setAlert({
                     title: "Error!",
-                    content: `Member already registered. Log in! If the issue persists, try again in a few hours  ${error}`
+                    content: `Member already registered. Log in! If the issue persists, try again in a few hours`
+                   
                 })
+                setLoading(false);
+                console.log(error)
             })
             //clear form
             .finally(() => {
@@ -94,6 +101,7 @@ const Registration = () => {
                     password: ""
                 });
                 setConfirmPass("");
+                setLoading(false);
             })
     }
 
@@ -128,7 +136,7 @@ const Registration = () => {
 
                                 <div className="form-group">
                                     <label htmlFor="year">Year of Study</label>
-                                    <select className="form-control" name="year" id="year" onChange={handleChange} value={registrationForm.year}>
+                                    <select className="form-control" name="year" id="year" onChange={handleChange} value={registrationForm.year} required>
                                         <option value="" disabled>SELECT</option>
                                         <option>I</option>
                                         <option>II</option>
@@ -168,7 +176,7 @@ const Registration = () => {
                                 </div>
                                 
                                 <br />
-                                <button type="submit" className="btn btn-primary" disabled={!confirmed && registrationForm.year != ""}>Submit</button>
+                                <button type="submit" className="btn btn-primary" disabled={!confirmed || loading}>{!loading? "Submit": "working ..."}</button>
                             </form>
                         </div>
                     </div>
