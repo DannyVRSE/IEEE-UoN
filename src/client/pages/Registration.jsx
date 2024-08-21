@@ -83,7 +83,7 @@ const Registration = () => {
                 setShowAlert(true);
                 setAlert({
                     title: "Error!",
-                    content: `Member already registered. Log in! If the issue persists, try again in a few hours`
+                    content: `Error registering user, Please try again! Details: ${error.response.data.message}`
                    
                 })
                 setLoading(false);

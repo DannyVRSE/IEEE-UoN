@@ -33,8 +33,6 @@ const signUp = async (req, res) => {
         console.log(data, "data");
         const member = await Member.create(data);
 
-
-
         if (member) {
             let setToken = await Token.create({
                 member_id: member.member_id,
