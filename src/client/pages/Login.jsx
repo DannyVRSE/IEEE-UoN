@@ -39,11 +39,10 @@ const Login = () => {
             })
     }
     return (<>
-        <div className="background-img">
+        
             <BackBtn />
             <div className="container">
                 <div className="inner-div-2">
-                    <br />
                     <div className="card w-80 login-card">
                         <div className="card-body">
                             <form className="login-form" autoComplete="off" onSubmit={handleSubmit} >
@@ -59,12 +58,10 @@ const Login = () => {
                                 <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4">Sign in</button>
                             </form>
                         </div>
-
                     </div>
                 </div>
                 <Footer />
             </div>
-        </div>
 
     </>)
 };

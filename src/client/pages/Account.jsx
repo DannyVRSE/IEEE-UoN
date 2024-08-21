@@ -41,12 +41,13 @@ const Account = () => {
                                 </div>
                             </div>
                             <br />
-                            <div>
-                                <h2>Join the global community!</h2>
-                                <Markdown>[Explore IEEE membership and communities](https://www.ieee.org/membership/join/index.html?WT.mc_id=hc_join).</Markdown>
-                            </div>
                         </>
                     }
+                    <br/>
+                    <div>
+                        <h2>Join the global community!</h2>
+                        <Markdown>[Explore IEEE membership and communities](https://www.ieee.org/membership/join/index.html?WT.mc_id=hc_join).</Markdown>
+                    </div>
                 </div>
 
             </div>

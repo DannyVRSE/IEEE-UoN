@@ -158,6 +158,7 @@ const Registration = () => {
                                     <label htmlFor="name">Password</label>
                                     <input className="form-control" name="password" type="password" value={registrationForm.password} onChange={handleChange} required />
                                     <PasswordStrengthBar password={registrationForm.password} />
+                                    <p style={{ color: "blue" }}>{passwordStrength}</p>
                                 </div>
 
                                 <div className="form-group">
@@ -165,7 +166,7 @@ const Registration = () => {
                                     <input className="form-control" name="password" type="password" value={confirmPass} onChange={handleConfirm} required />
                                     {!confirmed && registrationForm.password.length && confirmPass.length != 0 > 0 && <p style={{ color: "red" }}>Passwords do not match</p>}
                                 </div>
-                                <p style={{ color: "blue" }}>{passwordStrength}</p>
+                                
                                 <br />
                                 <button type="submit" className="btn btn-primary" disabled={!confirmed && registrationForm.year != ""}>Submit</button>
                             </form>
