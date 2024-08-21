@@ -9,15 +9,15 @@ import process from "node:process"
 env.config();
 
 //connect to db
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize(process.env.DATABASE_URL , {
     dialect: "postgres",
     dialectOptions: {
         ssl: {
             require: true,
             rejectUnauthorized: false,
         },
-    }
-});
+    }}
+);
 
 //test connection
 const connect = async () => {
