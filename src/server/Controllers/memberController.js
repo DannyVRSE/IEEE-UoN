@@ -33,6 +33,8 @@ const signUp = async (req, res) => {
         console.log(data, "data");
         const member = await Member.create(data);
 
+
+
         if (member) {
             let setToken = await Token.create({
                 member_id: member.member_id,
@@ -55,7 +57,8 @@ const signUp = async (req, res) => {
             <html>
             <body>
                 <p>Hello ${name},</p>
-                <p>Please verify your email by clicking this link:</p>
+                <p>Please verify your email by opening this link:</p>
+                <p><strong>Note: Open this link in a new incogito/private tab or it may not work</strong></p>
                 <a href="${verificationLink}">${verificationLink}</a>
                 <p>Thank you!</p>
                 <p>IEEE UoN Team</p>

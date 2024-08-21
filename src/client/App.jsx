@@ -15,6 +15,7 @@ import Members from './pages/Members'
 import Society from './pages/Society'
 import ComingSoon from './pages/ComingSoon'
 
+
 function App() {
   return (
     <>
@@ -30,7 +31,8 @@ function App() {
               <Route path="society/:societyName" element={<Society />} />
               <Route path="society/:societyName/members" element={<Members />} />
               <Route path="about" element={<About />} />
-              <Route path="coming_soon" element={<ComingSoon/>}/>
+              <Route path="coming_soon" element={<ComingSoon />} />
+
               <Route path="*" element={<Missing />} />
 
             </Route>
