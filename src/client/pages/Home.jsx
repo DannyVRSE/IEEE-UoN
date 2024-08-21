@@ -24,7 +24,7 @@ const Home = () => {
       //remove pointer
       setStyle({ pointerEvents: "none" })
     }
-  }, [loading])
+  }, [])
 
   return (
     <>
@@ -35,7 +35,7 @@ const Home = () => {
 
       <div className="container">
         <div className="inner-div-1">
-          {user && <div>{loading && <div className="loader-2"></div>}<p>{user.name}</p></div>}
+          {user && <div>{loading && <div className="loader"></div>}<p>{user.name}</p></div>}
           <h1>Welcome To IEEE UoN Student Branch</h1>
           <br />
 
