@@ -1,19 +1,18 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
-import Home from './pages/Home'
-import Registration from './pages/Registration'
-import Login from './pages/Login'
-import Missing from './pages/Missing'
-import { AuthProvider } from './hooks/AuthContext'
-import Community from './pages/Community'
-import Account from './pages/Account'
-
+import Layout from './components/Layout.jsx'
+import Home from './pages/Home.jsx'
+import Registration from './pages/Registration.jsx'
+import Login from './pages/Login.jsx'
+import Missing from './pages/Missing.jsx'
+import { AuthProvider } from './hooks/AuthContext.jsx'
+import Community from './pages/Community.jsx'
+import Account from './pages/Account.jsx'
 import './assets/index.css'
-import About from './pages/About'
-import Members from './pages/Members'
-import Society from './pages/Society'
-import ComingSoon from './pages/ComingSoon'
+import About from './pages/About.jsx'
+import Members from './pages/Members.jsx'
+import Society from './pages/Society.jsx'
+import ComingSoon from './pages/ComingSoon.jsx'
 
 
 function App() {
@@ -32,9 +31,7 @@ function App() {
               <Route path="society/:societyName/members" element={<Members />} />
               <Route path="about" element={<About />} />
               <Route path="coming_soon" element={<ComingSoon />} />
-
               <Route path="*" element={<Missing />} />
-
             </Route>
           </Routes>
         </BrowserRouter>

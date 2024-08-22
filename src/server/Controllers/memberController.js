@@ -58,7 +58,6 @@ const signUp = async (req, res) => {
             <body>
                 <p>Hello ${name},</p>
                 <p>Please verify your email by opening this link:</p>
-                <p><strong>Note: Open this link in a new incogito/private tab or it may not work</strong></p>
                 <a href="${verificationLink}">${verificationLink}</a>
                 <p>Thank you!</p>
                 <p>IEEE UoN Team</p>
@@ -96,24 +95,36 @@ const verifyEmail = async (req, res) => {
         console.log(memberToken);
 
         if (!memberToken) {
-            return res.status(400).send({
+
+            res.render("email-verification", {
                 msg: "Your verification link may have expired. Please click on resend for verify your Email.",
-            });
+            })
+
+            return res.status(400).send();
 
             //if token exist, find the user with that token
         } else {
             const member = await Member.findOne({ where: { member_id: req.params.id } });
             if (!member) {
                 console.log(member);
-                return res.status(401).send({
+
+                res.render("email-verification", {
                     msg: "We were unable to find a user for this verification. Please SignUp!",
-                });
+                })
+
+                return res.status(401).send();
+
 
                 //if user is already verified, tell the user to login
             } else if (member.verified) {
+
+                res.render("email-verification", {
+                    msg: "User has been already verified. Please Login",
+                })
+
                 return res
                     .status(200)
-                    .send("User has been already verified. Please Login");
+                    .send();
 
                 //if user is not verified, change the verified to true by updating the field
             } else {
@@ -129,12 +140,20 @@ const verifyEmail = async (req, res) => {
 
                 //if not updated send error message
                 if (!updated) {
-                    return res.status(500).send({ message: "Error verifying email" });
+
+                    res.render("email-verification", {
+                        msg: "Error verifying email",
+                    })
+
+                    return res.status(500).send();
                     //else send status of 200
                 } else {
+                    res.render("email-verification", {
+                        msg: "Your account has been successfully verified",
+                    })
                     return res
                         .status(200)
-                        .send("Your account has been successfully verified");
+                        .send();
                 }
             }
         }
