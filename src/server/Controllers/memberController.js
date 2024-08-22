@@ -20,7 +20,10 @@ const saltrounds = 10;
 const signUp = async (req, res) => {
 
     try {
-        const { name, email, reg_no, year, ieee_no, phone, password } = req.body.registrationForm;
+        let { name, email, reg_no, year, ieee_no, phone, password } = req.body.registrationForm;
+
+        if (ieee_no == null || ieee_no == "" || ieee_no == undefined)
+            ieee_no = 0;
         const data = {
             name,
             email,
@@ -32,6 +35,8 @@ const signUp = async (req, res) => {
         };
         console.log(data, "data");
         const member = await Member.create(data);
+
+        //pre
 
 
 
