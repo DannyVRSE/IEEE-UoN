@@ -22,18 +22,32 @@ const signUp = async (req, res) => {
     try {
         let { name, email, reg_no, year, ieee_no, phone, password } = req.body.registrationForm;
 
-        if (ieee_no == null || ieee_no == "" || ieee_no == undefined)
-            ieee_no = 0;
-        const data = {
-            name,
-            email,
-            reg_no,
-            year,
-            ieee_no,
-            phone,
-            password: await bcrypt.hash(password, saltrounds),
-        };
-        console.log(data, "data");
+        let data
+        if (ieee_no == null || ieee_no == "" || ieee_no == undefined) {
+
+            data = {
+                name,
+                email,
+                reg_no,
+                year,
+                phone,
+                password: await bcrypt.hash(password, saltrounds),
+            };
+        }
+        else {
+            data = {
+                name,
+                email,
+                reg_no,
+                year,
+                ieee_no,
+                phone,
+                password: await bcrypt.hash(password, saltrounds),
+            };
+        }
+        // console.log(data, "data");
+        console.log(ieee_no, "ieee_no");
+        console.log(typeof ieee_no, "ieee_no type");
         const member = await Member.create(data);
 
         //pre
