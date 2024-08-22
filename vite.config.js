@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/",
   plugins: [react(), VitePWA({
     registerType: 'autoUpdate',
     injectRegister: false,
@@ -44,6 +43,11 @@ export default defineConfig({
       globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
       cleanupOutdatedCaches: true,
       clientsClaim: true,
+      navigateFallbackDenylist: [/^\/api/],
+      runtimeCaching:[{
+        urlPattern: /^\/api\//,
+      handler: 'NetworkOnly',
+      }]
     },
 
     devOptions: {

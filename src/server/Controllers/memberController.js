@@ -119,7 +119,7 @@ const verifyEmail = async (req, res) => {
             } else if (member.verified) {
 
                 res.render("email-verification", {
-                    msg: "User has been already verified. Please Login",
+                    msg: "User has already been verified. Please Login",
                 })
 
                 return res
