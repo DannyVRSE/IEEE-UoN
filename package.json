@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server/main.js -w src/server",
-    "start": "node src/server/main.js",
+    "start": "cross-env NODE_ENV=production node src/server/main.js",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

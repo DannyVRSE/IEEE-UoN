@@ -11,7 +11,7 @@ export default defineConfig({
     manifest: {
       name: 'ieee uon',
       short_name: 'ieee',
-      description: '"ieee uon society app"',
+      description: 'Join societies and get updates on events and activities',
       theme_color: '#000000',
 
       icons: [{
@@ -37,6 +37,24 @@ export default defineConfig({
         type: 'image/png',
         purpose: 'maskable',
       }],
+
+      screenshots:[{
+        src: '/screenshot1.png',
+        sizes:'1898x838',
+        type: 'image/png',
+        form_factor: 'wide',
+        label: 'Societies - IEEE UoN Branch App',
+        
+      },
+    {
+      src:"/screenshot2.png",
+      sizes: '350x625',
+      type: 'image/png',
+      form_factor: 'narrow',
+      label: 'Societies - IEEE UoN Branch App',
+      
+    }
+    ]
     },
 
     workbox: {

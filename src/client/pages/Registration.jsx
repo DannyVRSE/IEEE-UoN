@@ -131,7 +131,7 @@ const Registration = () => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="name">Student Reg. Number</label>
-                                    <input className="form-control" name="reg_no" value={registrationForm.reg_no} onChange={handleChange} required />
+                                    <input className="form-control" name="reg_no" value={registrationForm.reg_no} onChange={handleChange} placeholder="e.g F17/0000/2020" required />
                                 </div>
 
                                 <div className="form-group">
