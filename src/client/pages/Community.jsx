@@ -1,5 +1,4 @@
 import Carousel from 'react-bootstrap/Carousel';
-import BackBtn from '../components/BackBtn';
 import roboticsImage from '../assets/images/robot.png';
 //import engineerImage from '../assets/images/engineer.png';
 import circuitImage from '../assets/images/circuit.png';
@@ -11,8 +10,7 @@ const Community = () => {
     const navigate = useNavigate();
     return (
         <>
-            <div className="container">
-            <BackBtn/>               
+            <div className="container">              
                 <div>
                     <Carousel>
                         <Carousel.Item>
