@@ -154,12 +154,12 @@ const Registration = () => {
 
                                 <div className="form-group">
                                     <label htmlFor="email">Email</label>
-                                    <input className="form-control" name="email" type="email" value={registrationForm.email} onChange={handleChange} required />
+                                    <input className="form-control" name="email" type="email" value={registrationForm.email} onChange={handleChange} pattern=".+@students\.uonbi\.ac\.ke" placeholder="example@students.uonbi.ac.ke" required />
                                 </div>
 
                                 <div className="form-group">
                                     <label htmlFor="name">Telephone</label>
-                                    <input className="form-control" name="phone" type="tel" value={registrationForm.phone} onChange={handleChange} required />
+                                    <input className="form-control" name="phone" type="tel" value={registrationForm.phone} onChange={handleChange} minLength={10} required />
                                 </div>
 
                                 <div className="form-group">
