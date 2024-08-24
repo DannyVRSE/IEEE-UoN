@@ -24,7 +24,6 @@
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));//similar to body-parser
     
-    //app.use(express.static(path.resolve("../../dist")));//serve static files from dist folder
     app.use(passport.initialize());
     passportAuth(passport);
     //app.use(helmet());
@@ -40,16 +39,11 @@
     app.use("/api/members", memberRoutes);
     app.use("/api/admin", adminRoutes);
 
-    //Handle react routing, return all requests to the app and let react-router handle the routing
-    /*app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "../../dist", "index.html"));
-    })*/
-
     ViteExpress.listen(app, PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     })
 
-    //test
+    //optional test
     /*if (process.env.NODE_ENV === "test") {
         app.listen(3000, () => console.log(`⚡️[server]: Server is running at https://localhost:3000`))
     }*/
