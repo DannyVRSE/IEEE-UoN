@@ -12,13 +12,16 @@ const Manage = () => {
     const [manageForm, setManageForm] = useState({
         email: "",
         role: "",
-        privilege: ""
+        privilege: "",
+        society: societyName.toUpperCase()
     });
+
     const handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
         setManageForm({ ...manageForm, [name]: value });
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,9 +31,15 @@ const Manage = () => {
                 Authorization: `Bearer ${token}`
             }
         }).then(res => {
-            console.log(res.data);
+            alert(res.data.message);
         }).catch(err => {
-            console.log(err);
+            alert(err.response.data.message);
+        }).finally(() => {
+            setManageForm({
+                email: "",
+                role: "",
+                privilege: ""
+            })
         })
 
     }
@@ -44,12 +53,12 @@ const Manage = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label>Member Email</label>
-                            <input type="email" placeholder="Copy from table" className="form-control" value={manageForm.email} />
+                            <input type="email" name="email" placeholder="Copy from table" className="form-control" value={manageForm.email} onChange={handleChange} required />
                         </div>
 
                         <div className="form-group">
                             <label>Member role</label>
-                            <input type="text" placeholder="E.g Treasurer" className="form-control" value={manageForm.role} />
+                            <input type="text" name="role" placeholder="E.g Treasurer" className="form-control" value={manageForm.role} onChange={handleChange} required/>
                         </div>
 
                         <br />
@@ -58,13 +67,14 @@ const Manage = () => {
 
 
                             <label htmlFor="role">Privilege</label>
-                            <select className="form-control" name="privilege" id="privilege" onChange={handleChange} value={manageForm.privilege}>
+                            <select className="form-control" name="privilege" id="privilege" onChange={handleChange} value={manageForm.privilege} required>
                                 <option value="" disabled>Select</option>
                                 <option value="basic">Basic</option>
                                 <option value="advanced">Advanced</option>
                             </select>
 
                             <br />
+                            
                             <div>
                                 <small id="privilegeHelp" className="form-text text-muted">Consider using &apos;advanced&apos; privilege for executive committee members.</small>
                             </div>
@@ -72,7 +82,7 @@ const Manage = () => {
 
                         <br />
 
-                        <button type="submit" className="btn btn-primary" disabled>Coming Soon</button>
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
 
                 </div>
