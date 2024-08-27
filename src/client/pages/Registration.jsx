@@ -137,11 +137,11 @@ const Registration = () => {
                                     <label htmlFor="year">Year of Study <span style={{ color: "red" }}>*</span></label>
                                     <select className="form-control" name="year" id="year" onChange={handleChange} value={registrationForm.year} required>
                                         <option value="" disabled>SELECT</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option>I</option>
+                                        <option>II</option>
+                                        <option>III</option>
+                                        <option>IV</option>
+                                        <option>V</option>
                                         <option>Postgraduate</option>
                                     </select>
                                 </div>
