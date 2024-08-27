@@ -99,8 +99,6 @@ const Society = () => {
 
     return (
         <>
-
-
             <div className="container">
                 <div className="inner-div-2">
                     <BackBtn />

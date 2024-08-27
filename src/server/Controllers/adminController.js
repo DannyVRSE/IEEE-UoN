@@ -8,6 +8,7 @@ const Membership = db.Membership
 
 const getMembers = async (req, res) => {
     try {
+        //🚩Auth needed
         //get the sociey
         const societyName = req.params.societyName
         console.log(societyName, "society name")
@@ -50,6 +51,7 @@ const getMembers = async (req, res) => {
 
 const manageMember = async (req, res) => {
     //auth needed 🚩
+    //validation needed🚩
     //check if the member has enough privileges
     //email, role, society, privilege_level
     const { email, role, society, privilege } = req.body.manageForm;

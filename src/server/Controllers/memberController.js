@@ -5,6 +5,7 @@ import sendingMail from "../Config/nodemailer.js";
 import jwt from "jsonwebtoken";
 import process from "node:process";
 import { QueryTypes } from "sequelize";
+import Joi from "joi";
 
 //get models from database
 //'sequelize' for use with raw queries, db for ORM
@@ -20,12 +21,15 @@ const saltrounds = 10;
 const signUp = async (req, res) => {
 
     try {
+        //receive post data
         let { name, email, reg_no, year, ieee_no, phone, password } = req.body.registrationForm;
 
-        let data
+        let userInfo
+
+        //handle the optional ieee member number
         if (ieee_no == null || ieee_no == "" || ieee_no == undefined) {
 
-            data = {
+            userInfo = {
                 name,
                 email,
                 reg_no,
@@ -35,7 +39,7 @@ const signUp = async (req, res) => {
             };
         }
         else {
-            data = {
+            userInfo = {
                 name,
                 email,
                 reg_no,
@@ -45,14 +49,29 @@ const signUp = async (req, res) => {
                 password: await bcrypt.hash(password, saltrounds),
             };
         }
+
+        //user input validation
+        const signUpSchema = Joi.object({
+            name: Joi.string().pattern(new RegExp('^[a-zA-Z ]+$')).required(),
+            email: Joi.string().email().pattern(new RegExp('^[\\w\\.-]+@students\\.uonbi\\.ac\\.ke$')).required(),
+            reg_no: Joi.string().required(),
+            year: Joi.string().required(),
+            ieee_no: Joi.number().integer().allow(null),
+            phone: Joi.string().pattern(new RegExp('^[0-9]{10,}$')).required(),
+            password: Joi.string().required()
+        });
+
         // console.log(data, "data");
-        console.log(ieee_no, "ieee_no");
-        console.log(typeof ieee_no, "ieee_no type");
-        const member = await Member.create(data);
+        try {
+            const value = await signUpSchema.validateAsync(userInfo);
+            console.log(value, "value");
+        } catch (err) {
+            console.log(err, "error");
+            return res.status(400).send({ message: "Invalid data. Check that you have entered the correct format!" });
+        }
 
-        //pre
-
-
+        //create member
+        const member = await Member.create(userInfo);
 
         if (member) {
             let setToken = await Token.create({
@@ -79,6 +98,8 @@ const signUp = async (req, res) => {
                 <p>Please verify your email by opening this link:</p>
                 <a href="${verificationLink}">${verificationLink}</a>
                 <p>Thank you!</p>
+                <br/>
+                <p>If you did not initiate this process, kindly ignore this email</p>
                 <p>IEEE UoN Team</p>
             </body>
             </html>
