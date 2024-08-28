@@ -24,31 +24,15 @@ const signUp = async (req, res) => {
         //receive post data
         let { name, email, reg_no, year, ieee_no, phone, password } = req.body.registrationForm;
 
-        let userInfo
-
-        //handle the optional ieee member number
-        if (ieee_no == null || ieee_no == "" || ieee_no == undefined) {
-
-            userInfo = {
-                name,
-                email,
-                reg_no,
-                year,
-                phone,
+            const userInfo = {
+                name: name,
+                email: email,
+                reg_no: reg_no,
+                year: year,
+                ieee_no: ieee_no === "" || ieee_no === null || ieee_no === undefined ? null : ieee_no,
+                phone: phone,
                 password: await bcrypt.hash(password, saltrounds),
             };
-        }
-        else {
-            userInfo = {
-                name,
-                email,
-                reg_no,
-                year,
-                ieee_no,
-                phone,
-                password: await bcrypt.hash(password, saltrounds),
-            };
-        }
 
         //user input validation
         const signUpSchema = Joi.object({
@@ -252,7 +236,7 @@ WHERE "Memberships".member_id =${req.user.member_id}
             type: QueryTypes.SELECT,
         });
         //send json
-        res.status(200).json({ user: { name: req.user.name, email: req.user.email, privilege_level: req.user.privilege_level, societies: registeredSocieties } });
+        res.status(200).json({ user: { name: req.user.name, email: req.user.email, privilege_level: req.user.privilege_level, year: req.user.year, ieee_no: req.user.ieee_no, phone: req.user.phone, societies: registeredSocieties } });
     } else {
         res.status(401).json({ auth: "false" });
     }
@@ -277,4 +261,43 @@ const joinSociety = async (req, res) => {
     }
 }
 
-export default { signUp, verifyEmail, login, getAuthStatus, joinSociety };
+const modifyMemberInfo = async (req, res) => {
+    const { name, year, ieee_no, phone } = req.body.modifyProfileForm;
+
+        const userInfo = {
+            name: name,
+            year: year,
+            ieee_no: ieee_no === "" || ieee_no === null || ieee_no === undefined ? null : ieee_no,
+            phone: phone
+        }
+
+        console.log(ieee_no, "ieee_no");
+        console.log(typeof(ieee_no), "ieee_no type");
+
+//data validation
+const schema = Joi.object({
+    name: Joi.string().pattern(new RegExp('^[a-zA-Z ]+$')).required(),
+    year: Joi.string().required(),
+    ieee_no: Joi.number().integer().allow(null),
+    phone: Joi.string().pattern(new RegExp('^[0-9]{10,}$')).required()
+});
+
+try {
+    const value = await schema.validateAsync(userInfo);
+    console.log(value);
+} catch (error) {
+    return res.status(400).send({ message: "Invalid data. Check that you have entered the correct format!" });
+}
+
+await Member.update({ name: userInfo.name, year: userInfo.year, ieee_no: userInfo.ieee_no, phone: userInfo.phone }, { where: { member_id: req.user.member_id } })
+    .then((response) => {
+        console.log(response)
+        return res.status(200).json({ message: "Member info updated!" })
+    })
+    .catch((error) => {
+        console.log(error)
+        return res.status(500).json({ message: "Error updating member info" })
+    });
+}
+
+export default { signUp, verifyEmail, login, getAuthStatus, joinSociety, modifyMemberInfo };

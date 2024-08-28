@@ -14,7 +14,7 @@ const Layout = () => {
                             <ul className="navbar-nav ms-auto">
                                 <li className="nav-item"><Link to="/" className="nav-link active">Home</Link></li>
                                 <li className="nav-item"><Link to="/community" className="nav-link">Community</Link></li>
-                                <li className="nav-item"><Link to="/account" className="nav-link">IEEE&Me</Link></li>
+                                <li className="nav-item"><Link to="/account" className="nav-link">Profile</Link></li>
                                 <li className="nav-item"><Link to="/about" className="nav-link">About IEEE</Link></li>
                             </ul>
                         </div>

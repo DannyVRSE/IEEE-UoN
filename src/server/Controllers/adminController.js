@@ -19,7 +19,7 @@ const getMembers = async (req, res) => {
             //check if user is admin in student branch  
             if (req.user.privilege_level == "advanced") {
                 const members = await Member.findAll({
-                    attributes: ['member_id', 'name', 'email', 'year', 'phone', 'role', 'privilege_level'],
+                    attributes: ['member_id', 'name', 'email', 'year', 'phone', 'role', 'privilege_level', 'ieee_no'],
                     where: {
                         verified: true
                     }

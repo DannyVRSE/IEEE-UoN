@@ -1,9 +1,5 @@
 
-import { useNavigate } from "react-router-dom"
-
 const Socials = (props) => {
-
-  const navigate = useNavigate();
 
   return (
     <div>

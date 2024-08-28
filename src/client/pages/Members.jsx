@@ -78,6 +78,7 @@ const Members = () => {
                                     <th scope="col">Year</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Role</th>
+                                    <th scope="col">IEEE No</th>
                                     <th scope="col">Privilege</th>
                                 </tr>
                             </thead>
@@ -92,6 +93,7 @@ const Members = () => {
                                         <td>{member.year}</td>
                                         <td>{member.phone}</td>
                                         <td>{member.role}</td>
+                                        <td>{member.ieee_no}</td>
                                         <td>{member.privilege_level}</td>
                                     </tr>
                                 ))}
