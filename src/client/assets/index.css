@@ -121,7 +121,7 @@ height: 100vh;
 /*large screens*/
 @media (min-width: 768px){
     .inner-div-1 {
-        margin-top: 25%;
+        margin-top: 20%;
     }
 
     .inner-div-2 {

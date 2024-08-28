@@ -13,7 +13,7 @@ const Manage = () => {
         email: "",
         role: "",
         privilege: "",
-        society: societyName.toUpperCase()
+        society: societyName
     });
 
     const handleChange = (e) => {
