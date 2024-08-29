@@ -13,6 +13,7 @@ export default defineConfig({
       short_name: 'ieee',
       description: 'Join societies and get updates on events and activities',
       theme_color: '#000000',
+      background_color: '#000000',
 
       icons: [{
         src: 'android-chrome-192x192.png',
