@@ -10,6 +10,7 @@
     import path from "path";
     import passportAuth from "./Config/passport.js";
     import { fileURLToPath } from "node:url";
+    import swaggerDocs from "./v1/swagger.js";
     env.config();
 
     const PORT = process.env.PORT || 5000;
@@ -23,6 +24,7 @@
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));//similar to body-parser
+    
     
     app.use(passport.initialize());
     passportAuth(passport);
@@ -41,7 +43,9 @@
 
     ViteExpress.listen(app, PORT, () => {
         console.log(`Server is running on port ${PORT}`);
+        swaggerDocs(app);//docs
     })
+
 
     //optional test
     /*if (process.env.NODE_ENV === "test") {
