@@ -48,8 +48,8 @@
 
 
     //optional test
-    /*if (process.env.NODE_ENV === "test") {
+    if (process.env.NODE_ENV === "test") {
         app.listen(3000, () => console.log(`⚡️[server]: Server is running at https://localhost:3000`))
-    }*/
+    }
 
     export default app;
