@@ -1,8 +1,8 @@
     import express from "express";
     import ViteExpress from "vite-express";
     import env from "dotenv";
-    import memberRoutes from "./Routes/memberRoutes.js";
-    import adminRoutes from "./Routes/adminRoutes.js";
+    import memberRoutes from "./v1/Routes/memberRoutes.js";
+    import adminRoutes from "./v1/Routes/adminRoutes.js";
     import db from "./Models/index.js";
     import process from "node:process";
     import passport from "passport";
@@ -36,8 +36,8 @@
     })
 
     //routes
-    app.use("/api/members", memberRoutes);
-    app.use("/api/admin", adminRoutes);
+    app.use("/api/v1/members", memberRoutes);
+    app.use("/api/v1/admin", adminRoutes);
 
     ViteExpress.listen(app, PORT, () => {
         console.log(`Server is running on port ${PORT}`);

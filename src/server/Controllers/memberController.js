@@ -67,7 +67,7 @@ const signUp = async (req, res) => {
 
                 const host = req.headers.host;//get host from request headers
                 const protocol = req.protocol//http or https
-                const verificationLink = `${protocol}://${host}/api/members/verify-email/${member.member_id}/${setToken.token}`
+                const verificationLink = `${protocol}://${host}/api/v1/members/verify-email/${member.member_id}/${setToken.token}`
                 console.log(verificationLink);
 
                 //send mail to user

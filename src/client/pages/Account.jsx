@@ -29,7 +29,7 @@ const Account = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setWorking(true);
-        axios.patch(`/api/members/`, { modifyProfileForm }, {
+        axios.patch(`/api/v1/members/`, { modifyProfileForm }, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`

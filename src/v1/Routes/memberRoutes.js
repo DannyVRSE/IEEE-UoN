@@ -1,7 +1,7 @@
 import express from 'express';
-import memberController from '../Controllers/memberController.js';
-import saveMember from '../Middlewares/memberAuth.js';
-import authenticate from '../Middlewares/passport.js';
+import memberController from '../../server/Controllers/memberController.js';
+import saveMember from '../../server/Middlewares/memberAuth.js';
+import authenticate from '../../server/Middlewares/passport.js';
 
 const router = express.Router();
 const { signUp, verifyEmail, login, getAuthStatus, joinSociety, modifyMemberInfo } = memberController

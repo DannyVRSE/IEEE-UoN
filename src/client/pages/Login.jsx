@@ -18,7 +18,7 @@ const Login = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("/api/members/login", { loginForm }, {
+        axios.post("/api/v1/members/login", { loginForm }, {
             headers: {
                 'Content-Type': 'application/json'
             }

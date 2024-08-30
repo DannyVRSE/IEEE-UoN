@@ -1,6 +1,6 @@
 import express from "express";
-import authenticate from "../Middlewares/passport.js";
-import adminController from "../Controllers/adminController.js";
+import authenticate from "../../server/Middlewares/passport.js";
+import adminController from "../../server/Controllers/adminController.js";
 
 const {getMembers, manageMember}= adminController
 
