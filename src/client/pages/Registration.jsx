@@ -63,7 +63,7 @@ const Registration = () => {
         e.preventDefault();
         //send data to the server
         setLoading(true);
-        axios.post("/api/members/signup", { registrationForm }, {
+        axios.post("/api/v1/members/signup", { registrationForm }, {
             headers: {
                 "Content-Type": "application/json"
             }

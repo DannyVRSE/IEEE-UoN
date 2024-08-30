@@ -67,7 +67,7 @@ const Society = () => {
             }
             else {
                 setJoining(true)
-                axios.post(`/api/members/memberships`, { email: user.email, society: societyName.toUpperCase() }, {
+                axios.post(`/api/v1/members/memberships`, { email: user.email, society: societyName.toUpperCase() }, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
