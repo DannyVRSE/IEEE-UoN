@@ -24,7 +24,6 @@
     "bootstrap": "^5.3.3",
     "bootswatch": "^5.3.3",
     "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
@@ -44,7 +43,6 @@
     "sequelize": "^6.37.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "swagger-ui-react": "^5.17.14",
     "vite-express": "^0.17.0",
     "zxcvbn": "^4.4.2"
   },

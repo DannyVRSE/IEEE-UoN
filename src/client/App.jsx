@@ -15,7 +15,6 @@ import Society from './pages/Society.jsx'
 import ComingSoon from './pages/ComingSoon.jsx'
 
 
-
 function App() {
   return (
     <>

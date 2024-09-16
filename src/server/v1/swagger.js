@@ -25,7 +25,6 @@ const swaggerDocs = (app)=>{
         res.setHeader("Content-Type", "application/json");
         res.json(swaggerSpec);
     });
-    
     console.log(`Version 1 docs available at .../api/v1/docs`);
 }
 
