@@ -1,5 +1,6 @@
-
 const Socials = (props) => {
+  const whatsappGroupLink = import.meta.env.VITE_IEEE_UON_WHATSAPP_GROUP_LINK;
+
 
   return (
     <div>
@@ -34,7 +35,7 @@ const Socials = (props) => {
         if (props.user == null) {
           alert("Please log in to access the whatsapp group");
         } else {
-          window.open("https://chat.whatsapp.com/CoOl0uO2oo9EPkE7YtKuvH", "_blank");
+          window.open(whatsappGroupLink, "_blank");
         }
       }} className="btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-whatsapp" viewBox="0 0 16 16">

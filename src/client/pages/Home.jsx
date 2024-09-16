@@ -30,7 +30,7 @@ const Home = () => {
         <div className="inner-div-1">
 
           <div>
-            {user && <div>{loading && <div className="loader"></div>}<p>{user.name}</p></div>}
+            {user && <div>{loading && <div className="loader"></div>}<p>{user.fname}</p></div>}
           </div>
 
           <div>

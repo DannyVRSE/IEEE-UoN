@@ -80,7 +80,7 @@ const Society = () => {
                     })
                     .catch((error) => {
                         console.log(error)
-                        alert("Error joining society")
+                        alert("Error! Check in the profile section if you are already a member of this society")
                     })
                     .finally(() => {
                         setJoining(false)
@@ -90,7 +90,6 @@ const Society = () => {
             }
         }
     }
-
     //do all this on page render
     useEffect(() => {
         getUser();
